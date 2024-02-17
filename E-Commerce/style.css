@@ -323,6 +323,9 @@ a{
 h2>span{
     color: red;
 }
+.links>li>a>.bxs-cart{
+    font-size: 20px;
+}
 .offer-text button:hover{
     /* background-color: rgb(181, 2, 2); */
     background-color: #088178;
@@ -717,10 +720,10 @@ select[name='size']{
     padding: 30px;
  }
 
- .blog-img>img{
-    width: 400px;
+ .blog-img>img {
+    width: 100%;
     height: 300px;
- }
+}
  .word-blog{
     display: flex;
     flex-direction: column;
@@ -782,10 +785,10 @@ select[name='size']{
  .about-text>p{
     color: gray;
  }
- .about-image>img{
-    width: 350px;
+ .about-image>img {
+    width: 100%;
     height: 350px;
- }
+}
  .download{
     display: flex;
     flex-direction: column;
@@ -1284,7 +1287,8 @@ fieldset {
         width: 100vw;
     }
     .map>iframe{
-        width: 100vw;
+        width: 100%;
+        border: none;
     }
     .leaveMessage {
         display: flex;
@@ -1360,3 +1364,4 @@ fieldset {
     transform: rotate(-360deg);
     transition: 1s;
 }
+
