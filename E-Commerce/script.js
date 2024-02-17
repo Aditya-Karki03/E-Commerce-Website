@@ -23,24 +23,55 @@ clothes.forEach((cloth)=>{
 })
 
 //Adding cart functionnality
-function AddedToCart(){
-    const carts = document.querySelectorAll('.bxs-cart-add');
+const carts = document.querySelectorAll('.bxs-cart-add');
     carts.forEach((cart) => {
-    cart.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        
-        cart.classList.toggle('rotated-text');
-        setTimeout(()=>{
-            cart.parentElement.innerHTML="<i class='bx bx-check'></i>";
-            checkedOrNot();
-        },900)
-
-        checkedOrNot();
+    cart.addEventListener('click', (e)=>{
+        AddedToCart(e,cart);
+        SendClothDivToCart(e,cart);
     });
 });
+
+function SendClothDivToCart(e,cart){
+    // const anchor=e.target.parentElement;
+    // const priceAndCart=anchor.parentElement;
+    // const divHoldingAll=priceAndCart.parentElement;
+    // const cartIcon=document.querySelector('.bxs-cart');
+    // const parentOfCartIcon=cartIcon.parentElement;
+    // const encodedHTML=encodeURIComponent(parentOfCartIcon.outerHTML);
+    // console.log(encodedHTML);
+    // const urlForCart=`cart.html?content=${encodedHTML}`;
+    // cartIcon.setAttribute('href',urlForCart);
+    const cartIcon = document.querySelector('.bxs-cart');
+    const parentOfCartIcon = cartIcon.parentElement;
+    const encodedHTML = encodeURIComponent(parentOfCartIcon.outerHTML);
+    console.log(encodedHTML);
+    const urlForCart = `cart.html?content=${encodedHTML}`;
+
+// Add a click event listener to navigate to the cart page
+    cartIcon.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action of the anchor tag
+    window.location.href = urlForCart; // Navigate to the cart page
+});
+
 }
-AddedToCart();
+
+function AddedToCart(e,cart){
+    const carts = document.querySelectorAll('.bxs-cart-add');
+    carts.forEach((cart) => {
+    cart.addEventListener('click', (e)=>{
+        AddedToCart(e,cart)
+    });
+});
+    e.stopPropagation();
+    e.preventDefault();
+    cart.classList.toggle('rotated-text');
+    setTimeout(()=>{
+        // cart.classList.replace('bxs-cart-add','bx-check')
+        cart.parentElement.innerHTML="<i class='bx bx-check'></i>";
+        checkedOrNot();
+    },900)
+
+}
 //Once the cloth is added to cart, cart icon changes to tick
 //If clicked on check, I want to change it to cart
 function checkedOrNot(){
@@ -52,11 +83,15 @@ checked.forEach((checks)=>{
         checks.classList.toggle('anti-rotated-text')
         setTimeout(()=>{
             checks.parentElement.innerHTML='<i class="bx bxs-cart-add"></i>';
-            AddedToCart();
+           AddedToCart();
+            
         },900)
     })
 })
 }
+
+
+
 
 //Lets build star rater
 const divContainingStars=document.querySelectorAll('.stars');
